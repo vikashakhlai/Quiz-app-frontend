@@ -1,4 +1,5 @@
 import { getKeys } from '../object/getKeys';
+import { convertPostgreDate } from './ConvertPostgreDate';
 
 export const convertStatusToDate = (
 	status: string,
@@ -29,10 +30,9 @@ export const convertStatusToDate = (
 		// QuizService.updateNoPassed(id);
 	}
 
-	// if (isPassed) {
-	// 	return convertPostgreDate(toDay.toString());
-	// } else {
-	// 	return convertPostgreDate(new Date().toString());
-	// }
-	return null;
+	if (isPassed) {
+		return convertPostgreDate(toDay.toString());
+	} else {
+		return convertPostgreDate(new Date().toString());
+	}
 };
