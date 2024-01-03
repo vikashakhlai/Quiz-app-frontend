@@ -94,9 +94,7 @@ const Quiz: FC<id> = ({ id }) => {
 								width="500px"
 								height="400px"
 								controls={true}
-								// light is usefull incase of dark mode
 								light={false}
-								// picture in picture
 								pip={true}
 							/>
 							<source src={result[currentQuestion]?.video} type="video/mp4" />

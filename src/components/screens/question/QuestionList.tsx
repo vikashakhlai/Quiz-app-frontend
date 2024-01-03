@@ -1,11 +1,11 @@
 import Button from '@/components/ui/form-elements/Button';
 import Heading from '@/components/ui/heading/Heading';
 import UserTable from '@/components/ui/user-table/UserTable';
+import { NextPageAuth } from '@/shared/types/auth.types';
 import Meta from '@/utils/meta/Meta';
-import { FC } from 'react';
 import { useUserQuestions } from './useUserQuestions';
 
-const QuestionList: FC = () => {
+const QuestionList: NextPageAuth = () => {
 	const {
 		handleSearch,
 		isLoading,
@@ -29,5 +29,7 @@ const QuestionList: FC = () => {
 		</Meta>
 	);
 };
+
+QuestionList.isOnlyUser = true;
 
 export default QuestionList;

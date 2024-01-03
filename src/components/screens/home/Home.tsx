@@ -1,37 +1,21 @@
 import Heading from '@/components/ui/heading/Heading';
-import { QuestionService } from '@/services/question.service';
+import { NextPageAuth } from '@/shared/types/auth.types';
 import Meta from '@/utils/meta/Meta';
-import { useEffect, useState } from 'react';
-import { IHome } from './home.interface';
 
 const questionId = 1;
 
-const Home: IHome = () => {
-	const [result, setResult] = useState([]);
-
-	useEffect(() => {
-		if (!questionId) return;
-
-		const fetchData = async () => {
-			const data = await QuestionService.getQuizQuestions(questionId);
-
-			setResult(data.data);
-		};
-
-		fetchData();
-	}, []);
-
+const Home: NextPageAuth = () => {
 	// console.log(data);
 	const questionId = 1;
 
 	return (
 		<Meta title="quiz" description="quiz app">
 			<Heading title="Quiz app" className="text-gray-300 mb-8 text-xl" />
-			{/* <QuizQuestionList /> */}
-			{/* <div>{String(result.length)}</div> */}
 			<h3>This Quiz app</h3>
 		</Meta>
 	);
 };
+
+Home.isOnlyUser = true;
 
 export default Home;
