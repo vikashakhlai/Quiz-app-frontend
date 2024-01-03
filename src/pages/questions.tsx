@@ -5,4 +5,6 @@ const QuestionsPage: NextPageAuth = () => {
 	return <QuestionList />;
 };
 
+QuestionsPage.isOnlyUser = true;
+
 export default QuestionsPage;

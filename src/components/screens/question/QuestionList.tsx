@@ -30,6 +30,4 @@ const QuestionList: NextPageAuth = () => {
 	);
 };
 
-QuestionList.isOnlyUser = true;
-
 export default QuestionList;

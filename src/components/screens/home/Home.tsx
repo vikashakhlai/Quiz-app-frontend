@@ -16,6 +16,4 @@ const Home: NextPageAuth = () => {
 	);
 };
 
-Home.isOnlyUser = true;
-
 export default Home;

@@ -5,4 +5,6 @@ const QuizzesFriendPage: NextPageAuth = () => {
 	return <QuizzesFriend />;
 };
 
+QuizzesFriendPage.isOnlyUser = true;
+
 export default QuizzesFriendPage;
