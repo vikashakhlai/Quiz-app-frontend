@@ -1,8 +1,10 @@
 import QuizList from '@/components/screens/quiz/QuizList';
 import { NextPageAuth } from '@/shared/types/auth.types';
 
-const quizzes: NextPageAuth = () => {
+const QuizzesPage: NextPageAuth = () => {
 	return <QuizList />;
 };
 
-export default quizzes;
+QuizzesPage.isOnlyUser = true;
+
+export default QuizzesPage;

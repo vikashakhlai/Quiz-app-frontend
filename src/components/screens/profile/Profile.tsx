@@ -3,7 +3,7 @@ import Heading from '@/components/ui/heading/Heading';
 import Meta from '@/utils/meta/Meta';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import AuthFields from '../auth/AuthFields';
+import AuthFieldsFriendId from '../auth/AuthFieldsFriendId';
 import styles from './Profile.module.scss';
 import { IProfileInput } from './profile.interface';
 import { useProfile } from './useProfile';
@@ -23,7 +23,7 @@ const Profile: FC = () => {
 				{isLoading ? (
 					<SkeletonLoader count={2} />
 				) : (
-					<AuthFields formState={formState} register={register} />
+					<AuthFieldsFriendId formState={formState} register={register} />
 				)}
 
 				<div className={styles.buttons}>{/* <Button>Update</Button> */}</div>

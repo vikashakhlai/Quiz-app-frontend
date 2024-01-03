@@ -9,7 +9,7 @@ interface IUserTable {
 	tableItems: ITableItem[];
 	isLoading: boolean;
 	headerItems: string[];
-	removeHandler: (id: number) => void;
+	removeHandler?: (id: number) => void;
 }
 
 const UserTable: FC<IUserTable> = ({

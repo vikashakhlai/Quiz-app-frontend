@@ -2,26 +2,29 @@ import { ITableItem } from '@/components/ui/user-table/user-table.interface';
 import { getUsersUrl } from '@/config/api.config';
 import { useDebounce } from '@/hooks/useDebounce';
 import { FriendService } from '@/services/friend.service';
-import { QuizService } from '@/services/quiz.service';
 import { toastError } from '@/utils/toast-error';
+import { useRouter } from 'next/router';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { toastr } from 'react-redux-toastr';
+import { IFriendAddInput } from './add-friend.interface';
 
 export const useUserFriends = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const debouncedSearch = useDebounce(searchTerm, 500);
 
+	const { push } = useRouter();
+
 	const queryData = useQuery(
-		['friend list', debouncedSearch],
+		['friends list', debouncedSearch],
 		() => FriendService.getUserFriends(),
 		{
 			select: ({ data }) =>
 				data.map(
 					(friend): ITableItem => ({
 						id: friend.id,
-						editUrl: getUsersUrl(`/edit/friends/quiz`),
-						items: [friend.email],
+						editUrl: getUsersUrl(`/edit/friend`),
+						items: [String(friend.id), friend.email],
 					})
 				),
 
@@ -37,14 +40,30 @@ export const useUserFriends = () => {
 
 	const { mutateAsync: deleteAsync } = useMutation(
 		'delete',
-		(userId: number) => QuizService.delete(userId),
+		(userId: number) => FriendService.deleteFriend(userId),
 		{
 			onError: (error) => {
-				toastError(error, 'Delete quiz');
+				toastError(error, 'Delete friend');
+				push('/friends');
 			},
 			onSuccess: () => {
-				toastr.success('Delete quiz', 'delete was success!');
+				toastr.success('Delete friend', 'delete was success!');
 				queryData.refetch();
+				push('/friends');
+			},
+		}
+	);
+
+	const { mutateAsync: createAsync } = useMutation(
+		'create',
+		(friendId: IFriendAddInput) => FriendService.addFriend(friendId),
+		{
+			onError: (error) => {
+				toastError(error, 'Add friend');
+			},
+			onSuccess: () => {
+				toastr.success('Add friend', 'add friend was success!');
+				push('/friends');
 			},
 		}
 	);
@@ -55,7 +74,8 @@ export const useUserFriends = () => {
 			...queryData,
 			searchTerm,
 			deleteAsync,
+			createAsync,
 		}),
-		[queryData, searchTerm, deleteAsync]
+		[queryData, searchTerm, deleteAsync, createAsync]
 	);
 };

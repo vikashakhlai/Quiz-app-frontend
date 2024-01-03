@@ -1,0 +1,25 @@
+.container {
+	@apply bg-gray-800 flex flex-col justify-center items-center mb-4 pt-4;
+
+	> h3 {
+		@apply font-semibold text-sm;
+	}
+
+	.question {
+		@apply font-semibold text-2xl;
+	}
+
+	.buttons {
+		> button {
+			@apply m-3;
+		}
+	}
+
+	.result {
+		@apply flex justify-center flex-col items-center text-center min-w-20 min-h-20 pb-8;
+
+		> h3 {
+			@apply font-semibold px-12 text-2xl mt-8 mb-8;
+		}
+	}
+}

@@ -1,0 +1,17 @@
+.form {
+	@apply mt-12;
+	.fields {
+		@apply flex items-center flex-wrap justify-between;
+		> div {
+			width: 48%;
+		}
+
+		select {
+			@apply text-white bg-gray-800 border-none;
+		}
+	}
+
+	> button {
+		@apply mt-10;
+	}
+}

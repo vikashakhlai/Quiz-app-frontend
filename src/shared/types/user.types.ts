@@ -4,3 +4,7 @@ export interface IUser {
 	password: string;
 	createdAt: string;
 }
+
+export interface IUserWithFriendId extends IUser {
+	friendId: string;
+}

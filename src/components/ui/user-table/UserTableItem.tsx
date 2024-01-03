@@ -8,7 +8,13 @@ const UserTableItem: FC<IUserTableItem> = ({ removeHandler, tableItem }) => {
 			{tableItem.items.map((value) => (
 				<div>{value}</div>
 			))}
-			<UserActions editUrl={tableItem.editUrl} removeHandler={removeHandler} />
+			<UserActions
+				editUrl={tableItem.editUrl}
+				playUrl={tableItem.playUrl}
+				removeHandler={removeHandler}
+				isBlocked={tableItem.isBlocked}
+				isQuizFriends={tableItem.isQuizFriends}
+			/>
 		</div>
 	);
 };

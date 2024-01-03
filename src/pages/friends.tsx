@@ -1,8 +1,10 @@
-import Friends from '@/components/screens/friend/FriendsList';
-import { FC } from 'react';
+import FriendsList from '@/components/screens/friend/FriendsList';
+import { NextPageAuth } from '@/shared/types/auth.types';
 
-const friends: FC = () => {
-	return <Friends />;
+const FriendsPage: NextPageAuth = () => {
+	return <FriendsList />;
 };
 
-export default friends;
+FriendsPage.isOnlyUser = true;
+
+export default FriendsPage;

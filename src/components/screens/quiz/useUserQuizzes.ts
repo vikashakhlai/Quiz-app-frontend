@@ -1,8 +1,9 @@
 import { ITableItem } from '@/components/ui/user-table/user-table.interface';
-import { getQuizzesUrl } from '@/config/api.config';
 import { useDebounce } from '@/hooks/useDebounce';
 import { QuizService } from '@/services/quiz.service';
+import { convertStatusToDate } from '@/utils/date/convertStatusToDate';
 import { toastError } from '@/utils/toast-error';
+import { useRouter } from 'next/router';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { toastr } from 'react-redux-toastr';
@@ -19,8 +20,17 @@ export const useUserQuizzes = () => {
 				data.map(
 					(quiz): ITableItem => ({
 						id: quiz.id,
-						editUrl: getQuizzesUrl(`/user`),
-						items: [String(quiz.name), quiz.status],
+						editUrl: `manage/quiz/edit/${quiz.id}`,
+						playUrl: `questions/quiz/${quiz.id}`,
+						isBlocked: quiz.isPassed,
+						items: [
+							String(quiz.id),
+							quiz.name,
+							String(
+								convertStatusToDate(quiz.status, quiz.updatedAt, quiz.isPassed)
+							),
+							String(quiz.isPassed),
+						],
 					})
 				),
 
@@ -48,12 +58,29 @@ export const useUserQuizzes = () => {
 		}
 	);
 
+	const { push } = useRouter();
+
+	const { mutateAsync: createAsync } = useMutation(
+		'create quiz',
+		() => QuizService.create(),
+		{
+			onError: (error) => {
+				toastError(error, 'Create quiz');
+			},
+			onSuccess: (data) => {
+				toastr.success('Create quiz', 'create was success!');
+				push(`manage/quiz/edit/${data.data.id}`);
+			},
+		}
+	);
+
 	return useMemo(
 		() => ({
 			handleSearch,
 			...queryData,
 			searchTerm,
 			deleteAsync,
+			createAsync,
 		}),
 		[queryData, searchTerm, deleteAsync]
 	);

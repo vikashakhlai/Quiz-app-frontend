@@ -24,7 +24,7 @@ const AuthItems: FC = () => {
 					<MenuItem
 						item={{
 							icon: 'MdLogin',
-							link: '/login',
+							link: '/auth',
 							title: 'Login',
 						}}
 					/>

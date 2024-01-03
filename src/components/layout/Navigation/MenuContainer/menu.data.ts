@@ -9,14 +9,24 @@ export const firstMenu: IMenu = {
 			title: 'Home',
 		},
 		{
-			icon: 'Md18UpRating',
+			icon: 'Md16Mp',
+			link: '/friends',
+			title: 'Friends',
+		},
+		{
+			icon: 'MdOutlineQuiz',
+			link: '/quizzes/friend',
+			title: 'Friend quizzes',
+		},
+		{
+			icon: 'MdQuiz',
 			link: '/quizzes',
 			title: 'Quizzes',
 		},
 		{
-			icon: 'Md16Mp',
-			link: '/friends',
-			title: 'Friends',
+			icon: 'MdQuestionMark',
+			link: '/questions',
+			title: 'Questions',
 		},
 	],
 };

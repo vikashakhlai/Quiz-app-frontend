@@ -16,7 +16,14 @@ export const AuthService = {
 			{ email, password }
 		);
 
-		if (response.data.accessToken) saveToStorage(response.data);
+		if (response.data.accessToken) {
+			saveToStorage(response.data);
+			const data = {
+				accessToken: response.data.accessToken,
+				refreshToken: response.data.refreshToken,
+			};
+			saveTokensStorage(data);
+		}
 
 		return response;
 	},
