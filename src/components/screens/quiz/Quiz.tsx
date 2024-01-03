@@ -90,7 +90,7 @@ const Quiz: FC<id> = ({ id }) => {
 					{result[currentQuestion]?.video && (
 						<>
 							<ReactPlayer
-								src={result[currentQuestion]?.video}
+								url={result[currentQuestion]?.video}
 								width="500px"
 								height="400px"
 								controls={true}
