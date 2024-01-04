@@ -18,10 +18,10 @@ const AuthFields: FC<IAuthFields> = ({
 		<>
 			<Field
 				{...register('email', {
-					required: 'Email es required',
+					required: 'Email is required!',
 					pattern: {
 						value: validEmail,
-						message: 'Please enter a valid email address',
+						message: 'Please enter a valid email',
 					},
 				})}
 				placeholder="E-mail"
